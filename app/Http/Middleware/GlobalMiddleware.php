@@ -15,7 +15,12 @@ class GlobalMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        echo 'Global Middleware';
+
+        error_log("[" . now() . "] Incoming Request URL: " . $request->fullUrl());
+
+        echo 'Global Middleware says hi!';
+
+
         return $next($request);
     }
 }

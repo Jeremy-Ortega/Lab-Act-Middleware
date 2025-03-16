@@ -16,8 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // TODO
         // REGISTER YOUR MIDDLEWARES HERE
         // YOU CAN USE ALIAS, AND REMEMBER THE PRIORITIZATION OF APPLYING MIDDLEWARES
-        $middleware->alias(['Global', GlobalMiddleware::class]);
-        $middleware->alias(['RouteOnly',RouteMiddleware::class]);
+        $middleware->alias(['Global'=> GlobalMiddleware::class]);
+
+        $middleware->alias(['RouteOnly'=> RouteMiddleware::class]);
 
     })
     ->withExceptions(function (Exceptions $exceptions) {

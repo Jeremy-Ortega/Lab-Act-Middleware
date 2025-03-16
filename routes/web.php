@@ -2,21 +2,33 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RouteMiddleware;
+use App\Http\Middleware\GlobalMiddleware;
+
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 // CREATE ROUTES 
-Route::get('/login',[AuthController::class, 'login'])->name('login');
-Route::post('/login',[AuthController::class, 'loginPost'])->name('login.Post');
 
 Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
+Route::middleware([GlobalMiddleware::class])->controller(AuthController::class)->group(function(){
 
-Route::get('/register',[AuthController::class, 'register'])->name('register');
-Route::post('/register',[AuthController::class, 'registerPost'])->name('register.Post');
+    Route::get('/login','login')->name('login');
+    Route::post('/login','loginPost')->name('login.Post');
+    
+    Route::get('/register', 'register')->name('register');
+    Route::post('/register','registerPost')->name('register.Post');
+    
+}) ;
 
-Route::get('/dashboard',[AuthController::class, 'dashboard'])->name('dashboard');
+
+Route::get('/dashboard',[AuthController::class, 'dashboard'])->name('dashboard')
+->middleware([RouteMiddleware::class]);
+
+
 
 

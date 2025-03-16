@@ -26,6 +26,7 @@
 
         <button type="submit">Register</button>
 
+        
         @if ($errors->any())
             <ul>
                 @foreach ($errors->all() as $error)
@@ -35,5 +36,7 @@
         @endif
         
     </form>
+
+        <a href="{{route('login')}}">Already have an account?</a>
 </body>
 </html>

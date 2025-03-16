@@ -18,7 +18,6 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
-        // Session::flush();
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
@@ -34,7 +33,7 @@ class AuthController extends Controller
         return view('dashboard');
     }
 
-    //=====
+    //
 
     public function loginPost(request $request){
         
@@ -47,9 +46,7 @@ class AuthController extends Controller
             $request -> session()->regenerate();
             return redirect() ->intended('/dashboard');
         }
-
-        // throw ValidationException::withMessages(['credentials' => 'Invalid Credentials']);
-        // return back()->withErrors(['email'=>'Invalid Credentials']);
+        return back()->withErrors(['email'=>'Invalid Credentials']);
     }
 
     public function registerPost(request $request){

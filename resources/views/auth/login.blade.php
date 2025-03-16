@@ -28,6 +28,7 @@
         </ul>
     @endif
     </form>
+    <a href="{{route('register')}}">Don't have an account?</a>
 
     
 </body>
