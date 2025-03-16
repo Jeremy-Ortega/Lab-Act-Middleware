@@ -4,39 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    @vite('resources/css/app.css')
+
     <title>Register</title>
 </head>
-<body>
-    <form action="{{route('register.Post')}}" method="POST">
-        @csrf
-        <label for="Username">Username</label>
-        <input type="text" placeholder="Username" name="username" required>
-        <br>
-        <label for="mail">Email</label>
-        <input type="email" placeholder="Email"  name="email" required>
-        <br>
+<body class="h-screen flex items-center justify-center bg-gradient-to-r from-violet-200 to-pink-200flex-col">
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Password" name="password" required>
-        <br>
+    <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md text-center">
 
-        <label for="password">Confirm Password</label>
-        <input type="password" placeholder="Password" name="password_confirmation" required>
-        <br>
+        <form action="{{route('register.Post')}}" method="POST">
+            @csrf
+            <div class="text-left space-y-2">
+                <label for="Username">Username : </label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+                <br>
+                <label for="mail">Email : </label>
+                <input type="email" placeholder="Enter Email"  name="email" required>
+                <br>
 
-        <button type="submit">Register</button>
+                <label for="password">Password : </label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <br>
 
-        
-        @if ($errors->any())
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        @endif
-        
-    </form>
+                <label for="password">Confirm Password : </label>
+                <input type="password" placeholder="Enter Password again" name="password_confirmation" required>
+                <br><br>
 
-        <a href="{{route('login')}}">Already have an account?</a>
+            </div>
+
+            <button type="submit"  class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">Register</button>
+            <br>
+            <a href="{{route('login')}}" class="text-xs text-blue-500 text-center">Already have an account?</a>
+            <br>
+
+            
+            @if ($errors->any())
+                <ul class="bg-red-300 rounded-2xl p-4 w-full max-w-md text-red">
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>
+                    @endforeach
+                </ul>
+            @endif
+            
+        </form>
+
+    </div>
 </body>
 </html>
