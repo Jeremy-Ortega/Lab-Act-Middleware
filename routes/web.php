@@ -15,7 +15,7 @@ Route::get('/', function () {
 
 Route::post('/logout',[AuthController::class, 'logout'])->name('logout');
 
-Route::middleware([GlobalMiddleware::class])->controller(AuthController::class)->group(function(){
+Route::middleware(['Global'])->controller(AuthController::class)->group(function(){
 
     Route::get('/login','login')->name('login');
     Route::post('/login','loginPost')->name('login.Post');
@@ -27,7 +27,7 @@ Route::middleware([GlobalMiddleware::class])->controller(AuthController::class)-
 
 
 Route::get('/dashboard',[AuthController::class, 'dashboard'])->name('dashboard')
-->middleware([RouteMiddleware::class]);
+->middleware(['RouteOnly']);
 
 
 
